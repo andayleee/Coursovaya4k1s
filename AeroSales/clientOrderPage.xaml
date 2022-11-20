@@ -1,0 +1,100 @@
+﻿<Page x:Class="AeroSales.clientOrderPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:AeroSales"
+      xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+      mc:Ignorable="d" 
+      d:DesignHeight="1080" d:DesignWidth="1920"
+      Title="clientOrderPage">
+    <ScrollViewer VerticalScrollBarVisibility="Visible">
+        <StackPanel>
+            <Grid>
+                <Rectangle Fill="#ff6f32" Grid.Column="0" Grid.ColumnSpan="10" Height="60" VerticalAlignment="Top" Grid.Row="0"/>
+                <Label Grid.ColumnSpan="10" Grid.Column="0" Grid.Row="0" Margin="0 0 0 0" Content="AEROSALES" Height="60" VerticalAlignment="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="30" FontFamily="Syncopate Cyr" Foreground="White"/>
+                <Button Foreground="Black" Name="btnBack" FontFamily="Yu Gothic UI Light" VerticalAlignment="Top" Background="#ff6f32" Grid.Column="0" Grid.ColumnSpan="2"  Grid.Row="0" Content="🠔" FontSize="40" BorderThickness="0" Width="60" Height="60"  HorizontalAlignment="Left" Click="btnBack_Click" />
+            </Grid>
+            <Rectangle Height="50"/>
+            <StackPanel Width="800">
+                <GroupBox Grid.Row="3" Padding="10" Header="РЕЙС" BorderThickness="0.5" FontFamily="Syncopate Cyr" Foreground="Black" BorderBrush="Black" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                    <StackPanel>
+                        <Label FontSize="30" HorizontalAlignment="Left" FontFamily="Century Gothic" Name="lbHeader">Москва - Санкт-Петербург 10.02.2022</Label>
+                        <Rectangle Height="2" Fill="Black"/>
+                        <WrapPanel HorizontalAlignment="Stretch">
+                            <StackPanel HorizontalAlignment="Left">
+                                <Label FontSize="30" HorizontalAlignment="Left" FontFamily="Century Gothic" Name="lbCarrierCompanyName">Аэрофлот</Label>
+                                <Label FontSize="20" HorizontalAlignment="Left" FontFamily="Century Gothic" Name="lbPoints">Москва - Санкт-Петербург</Label>
+                                <Label FontSize="20" HorizontalAlignment="Left" FontFamily="Century Gothic" Name="lbAirType" Foreground="#ff6f32">«Aerobus»</Label>
+                            </StackPanel>
+                            <Rectangle Width="70"/>
+                            <StackPanel HorizontalAlignment="Right">
+                                <Label FontSize="30" HorizontalAlignment="Left" FontFamily="Century Gothic" Name="lbTimeFrom" FontWeight="Bold">12:00:00</Label>
+                                <Label FontSize="20" HorizontalAlignment="Left" FontFamily="Century Gothic" Name="lbPointFrom">Москва</Label>
+                            </StackPanel>
+                            <StackPanel HorizontalAlignment="Right">
+                                <Label FontSize="20" Margin="0,6,0,0" HorizontalAlignment="Center" FontFamily="Century Gothic" Name="lbTripTime">12:00:00</Label>
+                                <Label FontSize="10" HorizontalAlignment="Center" FontFamily="Century Gothic" >Время перелета</Label>
+                            </StackPanel>
+                            <StackPanel HorizontalAlignment="Right">
+                                <Label FontSize="30" HorizontalAlignment="Right" FontFamily="Century Gothic" Name="lbTimeTo" FontWeight="Bold">00:00:00</Label>
+                                <Label FontSize="20" HorizontalAlignment="Right" FontFamily="Century Gothic" Name="lbPointTo">Санкт-Петербург</Label>
+                            </StackPanel>
+                        </WrapPanel>
+                    </StackPanel>
+                </GroupBox>
+                <Rectangle Height="50"/>
+                <GroupBox Grid.Row="3" Padding="10" Header="КОЛИЧЕСТВО БИЛЕТОВ" BorderThickness="0.5" FontFamily="Syncopate Cyr" Foreground="Black" BorderBrush="Black" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                    <StackPanel>
+                        <Label Grid.ColumnSpan="3" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" Margin="0 0 0 0" Content="Укажите количество билетов" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="25" FontFamily="Century Gothic" Foreground="Black"/>
+                        <Rectangle Height="20"/>
+                        <WrapPanel>
+                            <xctk:IntegerUpDown MaxWidth="200" MaxLength="2" Name="txtCount" Height="30" FontFamily="Century Gothic" MinWidth="200" Grid.ColumnSpan="3"  BorderThickness="0" HorizontalAlignment="Left"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Transparent" Background="AliceBlue" Grid.Column="1" Grid.Row="7" Margin="5 0 5 0" FontSize="20"/>
+                            <Button Height="30" MinWidth="250" Foreground="White" Name="btnApplyCount" BorderThickness="0"  FontFamily="Syncopate Cyr" Background="#ff6f32" Margin="5 0 0 0" Content="ПОДТВЕРДИТЬ" FontSize="20" Click="btnApplyCount_Click" />
+                        </WrapPanel>
+                    </StackPanel>
+                </GroupBox>
+                <Rectangle Height="50"/>
+                <GroupBox Grid.Row="3" Name="gbSeat" Padding="10" Header="КОЛИЧЕСТВО БИЛЕТОВ" BorderThickness="0.5" FontFamily="Syncopate Cyr" Foreground="Black" BorderBrush="Black" HorizontalContentAlignment="Stretch" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                    <StackPanel HorizontalAlignment="Left">
+                        <WrapPanel HorizontalAlignment="Stretch">
+                            <Label Margin="0 0 0 0" Content="Стоимость билета:" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" FontSize="25" FontFamily="Century Gothic" Foreground="Black"/>
+                            <Label FontSize="30" HorizontalContentAlignment="Right" FontFamily="Century Gothic" Name="lbCost" FontWeight="Bold">0</Label>
+                            <Label FontSize="30" HorizontalContentAlignment="Right" FontFamily="Century Gothic"  FontWeight="Bold">руб.</Label>
+                        </WrapPanel>
+                        <Rectangle Height="20"/>
+                        <Expander BorderThickness="0.5" FontFamily="Syncopate Cyr" Width="260" Foreground="White" HorizontalContentAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <Expander.Header>
+                                <Label Content="Выберите места:" VerticalContentAlignment="Center" FontSize="25" FontFamily="Century Gothic" Foreground="Black"/>
+                            </Expander.Header>
+                            <DataGrid Name="dg2" VerticalGridLinesBrush="Transparent" HorizontalGridLinesBrush="Transparent" AlternatingRowBackground="AliceBlue" BorderBrush="Transparent" HeadersVisibility="None" AutoGenerateColumns="False" ItemsSource="{Binding place}" CanUserAddRows="False" CanUserDeleteRows="False" FontFamily="Century Gothic" HorizontalAlignment="Center" VerticalAlignment="Stretch"  ScrollViewer.CanContentScroll="False" FontSize="20">
+                                <DataGrid.Columns>
+                                    <DataGridTemplateColumn Header="Место">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Path=place}" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                    <DataGridTemplateColumn Width="40">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <CheckBox Name="chDG" HorizontalAlignment="Left" VerticalAlignment="Center" Checked="chDG_Checked" Unchecked="chDG_Unchecked"/>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Expander>
+                    </StackPanel>
+                </GroupBox>
+                <WrapPanel Name="wrpTotal" HorizontalAlignment="Right">
+                    <Label Margin="0 0 0 0" Content="ИТОГО:" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="25" FontFamily="Syncopate Cyr" Foreground="Black"/>
+                    <Label FontSize="30" HorizontalContentAlignment="Right" FontFamily="Century Gothic" Name="lbTotal" FontWeight="Bold">0</Label>
+                    <Label FontSize="30" HorizontalContentAlignment="Right" FontFamily="Century Gothic"  FontWeight="Bold">руб.</Label>
+                </WrapPanel>
+                <Button Height="30" MinWidth="250" Foreground="White" Name="btnApplyOrder" BorderThickness="0"  FontFamily="Syncopate Cyr" Background="#ff6f32" Margin="5 0 0 0" Content="ОФОРМИТЬ ЗАКАЗ" FontSize="20" Click="btnApplyOrder_Click"  />
+            </StackPanel>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

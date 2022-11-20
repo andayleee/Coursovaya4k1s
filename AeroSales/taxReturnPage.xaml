@@ -1,0 +1,103 @@
+﻿<Page x:Class="AeroSales.taxReturnPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+      xmlns:local="clr-namespace:AeroSales"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="taxReturnPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.7*"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="0.2*"/>
+            <RowDefinition Height="0.3*"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="0.5*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.1*"/>
+            <ColumnDefinition Width="0.9*"/>
+            <ColumnDefinition Width="0.9*"/>
+            <ColumnDefinition Width="0.1*"/>
+            <ColumnDefinition Width="0.1*"/>
+            <ColumnDefinition Width="0.9*"/>
+            <ColumnDefinition Width="0.9*"/>
+            <ColumnDefinition Width="0.1*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+
+        <Button Foreground="Black" Name="btnBack" FontFamily="Yu Gothic UI Light" Background="White" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2" Grid.Row="0" Content="🠔" FontSize="40" BorderThickness="0" Width="60" HorizontalAlignment="Left" Click="btnBack_Click" />
+
+
+
+        <Label Grid.ColumnSpan="2" Grid.RowSpan="2" Grid.Column="1" Grid.Row="0" Margin="0 0 0 0" Content="Наименование организации" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" FontFamily="Yu Gothic UI Light"/>
+        <TextBox Name="txtNameOfCompany" Text="OOO'AeroSales'" Grid.ColumnSpan="2" Grid.RowSpan="2" BorderThickness="0" FontFamily="Yu Gothic UI Light" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Transparent" Background="AliceBlue" Grid.Column="1" Grid.Row="2" Margin="5 0 5 0" FontSize="20"/>
+
+        <Label Grid.ColumnSpan="2" Grid.RowSpan="2" Grid.Column="1" Grid.Row="6" Margin="0 0 0 0" Content="Контактный номер" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" FontFamily="Yu Gothic UI Light"/>
+        <xctk:MaskedTextBox Name="txtPhoneNum" Mask="+7(000)000-00-00" Text="+7(457)674-23-53"  Grid.ColumnSpan="2" Grid.RowSpan="2" BorderThickness="0" FontFamily="Yu Gothic UI Light" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Transparent" Background="AliceBlue" Grid.Column="1" Grid.Row="8" Margin="5 0 5 0" FontSize="20"/>
+
+        <Label Grid.ColumnSpan="2" Grid.RowSpan="2" Grid.Column="1" Grid.Row="11" Margin="0 0 0 0" Content="Дата формирования" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" FontFamily="Yu Gothic UI Light"/>
+        <DatePicker  Name="dpDateofForation" Grid.ColumnSpan="2" Grid.RowSpan="2" BorderThickness="0" FontFamily="Yu Gothic UI Light" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Transparent" Background="AliceBlue" Grid.Column="1" Grid.Row="13" Margin="5 0 5 0" FontSize="20"/>
+
+        <Label Grid.ColumnSpan="2" Grid.RowSpan="2" Grid.Column="1" Grid.Row="16" Margin="0 0 0 0" Content="ИНН" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" FontFamily="Yu Gothic UI Light"/>
+        <xctk:MaskedTextBox Mask="0000000000" Text="5473948573"  Name="txtINN" Grid.ColumnSpan="2" Grid.RowSpan="2" BorderThickness="0" FontFamily="Yu Gothic UI Light" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Transparent" Background="AliceBlue" Grid.Column="1" Grid.Row="18" Margin="5 0 5 0" FontSize="20"/>
+
+        <Label Grid.ColumnSpan="2" Grid.RowSpan="2" Grid.Column="5" Grid.Row="0" Margin="0 0 0 0" Content="КПП" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" FontFamily="Yu Gothic UI Light"/>
+        <xctk:MaskedTextBox Mask="000000000" Text="987635676" Name="txtKPP" Grid.ColumnSpan="2" Grid.RowSpan="2" BorderThickness="0" FontFamily="Yu Gothic UI Light" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Transparent" Background="AliceBlue" Grid.Column="5" Grid.Row="2" Margin="5 0 5 0" FontSize="20"/>
+
+        <Label Grid.ColumnSpan="2" Grid.RowSpan="2" Grid.Column="5" Grid.Row="6" Margin="0 0 0 0" Content="Сумма налога подлежащая к оплате" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" FontFamily="Yu Gothic UI Light"/>
+        <xctk:IntegerUpDown Name="txtAll" Grid.ColumnSpan="2" Grid.RowSpan="2" BorderThickness="0" FontFamily="Yu Gothic UI Light" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Transparent" Background="AliceBlue" Grid.Column="5" Grid.Row="8" Margin="5 0 5 0" FontSize="20"/>
+
+        <Label Grid.ColumnSpan="2" Grid.RowSpan="2" Grid.Column="5" Grid.Row="11" Margin="0 0 0 0" Content="ФИО сотрудника" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" FontFamily="Yu Gothic UI Light"/>
+        <ComboBox Name="cmbFIO" Grid.ColumnSpan="2" Grid.RowSpan="2" BorderThickness="0" FontFamily="Yu Gothic UI Light" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Transparent" Background="AliceBlue" Grid.Column="5" Grid.Row="13" Margin="5 0 5 0" FontSize="20"/>
+
+        <Label Grid.ColumnSpan="2" Grid.RowSpan="2" Grid.Column="5" Grid.Row="16" Margin="0 0 0 0" Content="Банковский счет" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" FontFamily="Yu Gothic UI Light"/>
+        <ComboBox Name="cmbBankAccount"  Grid.ColumnSpan="2" Grid.RowSpan="2" BorderThickness="0" FontFamily="Yu Gothic UI Light" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Transparent" Background="AliceBlue" Grid.Column="5" Grid.Row="18" Margin="5 0 5 0" FontSize="20"/>
+
+        <DataGrid Name="dg1" Grid.Column="8" Grid.Row="5" Grid.ColumnSpan="11" Grid.RowSpan="30" FontSize="14" IsReadOnly="True" SelectionChanged="dg1_SelectionChanged"  />
+
+        <TextBox Name="txtSearch" Grid.ColumnSpan="4" Grid.RowSpan="2" BorderThickness="0" FontFamily="Yu Gothic UI Light" VerticalContentAlignment="Center" BorderBrush="Transparent" Background="AliceBlue" Grid.Column="8" Grid.Row="1" Margin="0 0 0 0" FontSize="20" TextChanged="txtSearch_TextChanged" />
+        <Button Name="btnSearch" FontFamily="Yu Gothic UI Light" Margin="0 0 0 15" Grid.RowSpan="3" Background="#0c73fe" Grid.Column="8" Grid.Row="3" Content="Поиск" FontSize="20" BorderThickness="0"/>
+        <Button Name="btnInsert" FontFamily="Yu Gothic UI Light" Margin="0 0 0 15" Grid.RowSpan="3"  Background="#0c73fe" Grid.Column="9" Grid.Row="3" Content="Добавить" FontSize="20" BorderThickness="0" Click="btnInsert_Click"  />
+        <Button Name="btnUpdate" FontFamily="Yu Gothic UI Light" Margin="0 0 0 15" Grid.RowSpan="3"  Background="#0c73fe" Grid.Column="10" Grid.Row="3" Content="Изменить" FontSize="20" BorderThickness="0" Click="btnUpdate_Click"  />
+        <Button Name="btnDelete" FontFamily="Yu Gothic UI Light" Margin="0 0 0 15" Grid.RowSpan="3"  Background="#0c73fe" Grid.Column="11" Grid.Row="3" Content="Удалить" FontSize="20" BorderThickness="0" Click="btnDelete_Click" />
+    </Grid>
+</Page>

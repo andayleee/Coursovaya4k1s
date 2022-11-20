@@ -1,0 +1,67 @@
+﻿<Page x:Class="AeroSales.clientProfilePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+      xmlns:local="clr-namespace:AeroSales"
+      mc:Ignorable="d" 
+      d:DesignHeight="1080" d:DesignWidth="1920"
+      Title="clientProfilePage">
+
+    <ScrollViewer VerticalScrollBarVisibility="Visible">
+        <StackPanel VerticalAlignment="Stretch">
+            <Grid>
+                <Rectangle Fill="#ff6f32" Grid.Column="0" Grid.ColumnSpan="10" Height="60" VerticalAlignment="Top" Grid.Row="0"/>
+                <Label Grid.ColumnSpan="10" Grid.Column="0" Grid.Row="0" Margin="0 0 0 0" Content="AEROSALES" Height="60" VerticalAlignment="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="30" FontFamily="Syncopate Cyr" Foreground="White"/>
+                <Button Foreground="Black" Name="btnBack" FontFamily="Yu Gothic UI Light" VerticalAlignment="Top" Background="#ff6f32" Grid.Column="0" Grid.ColumnSpan="2"  Grid.Row="0" Content="🠔" FontSize="40" BorderThickness="0" Width="60" Height="60"  HorizontalAlignment="Left" Click="btnBack_Click" />
+            </Grid>
+            <Rectangle Height="50"/>
+            <StackPanel Width="550" HorizontalAlignment="Center" VerticalAlignment="Stretch">
+                <Label FontSize="30" HorizontalAlignment="Left" FontFamily="Century Gothic" >Ваши персональные данные</Label>
+                <Rectangle Height="20"/>
+                <Label FontSize="25" HorizontalAlignment="Left" FontFamily="Century Gothic" >Фамилия, Имя и Отчество</Label>
+                <Label Margin="0 0 0 0" Content="Фамилия" VerticalContentAlignment="Center" FontSize="20" FontFamily="Yu Gothic UI Light"/>
+                <TextBox Name="txtSurname" BorderThickness="0" FontFamily="Yu Gothic UI Light" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" BorderBrush="Transparent" Background="AliceBlue" Margin="5 0 5 0" FontSize="20"/>
+                <Label Margin="0 0 0 0" Content="Имя" VerticalContentAlignment="Center" FontSize="20" FontFamily="Yu Gothic UI Light"/>
+                <TextBox Name="txtName" BorderThickness="0" FontFamily="Yu Gothic UI Light" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" BorderBrush="Transparent" Background="AliceBlue" Margin="5 0 5 0" FontSize="20"/>
+                <Label Margin="0 0 0 0" Content="Отчество" VerticalContentAlignment="Center" FontSize="20" FontFamily="Yu Gothic UI Light"/>
+                <TextBox Name="txtMiddleName" BorderThickness="0" FontFamily="Yu Gothic UI Light" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" BorderBrush="Transparent" Background="AliceBlue" Margin="5 0 5 0" FontSize="20"/>
+                <Label Margin="0 0 0 0" Content="* не обязательно к заполнению" VerticalContentAlignment="Top" VerticalAlignment="Top" FontSize="10" FontFamily="Yu Gothic UI Light"/>
+                <Rectangle Height="20"/>
+                <Label FontSize="25" HorizontalAlignment="Left" FontFamily="Century Gothic" >Дата рождения</Label>
+                <DatePicker Name="dpDateBirth" BorderThickness="0" FontFamily="Yu Gothic UI Light" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" BorderBrush="Transparent" Background="AliceBlue" Margin="5 0 5 0" FontSize="20"/>
+                <Rectangle Height="20"/>
+                <Label FontSize="25" HorizontalAlignment="Left" FontFamily="Century Gothic" >Контактные данные</Label>
+                <WrapPanel>
+                    <StackPanel Width="275">
+                        <Label Margin="0 0 0 0" Content="Номер телефона" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" FontFamily="Yu Gothic UI Light"/>
+                        <xctk:MaskedTextBox Mask="+7(000)000-00-00" Name="txtPhoneNum"  BorderThickness="0" FontFamily="Yu Gothic UI Light" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Transparent" Background="AliceBlue" Margin="5 0 5 0" FontSize="20"/>
+                    </StackPanel>
+                    <StackPanel Width="275">
+                        <Label Margin="0 0 0 0" Content="Почта" VerticalContentAlignment="Center" FontSize="20" HorizontalContentAlignment="Center" FontFamily="Yu Gothic UI Light"/>
+                        <TextBox Name="txtEmail" BorderThickness="0" FontFamily="Yu Gothic UI Light" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Transparent" Background="AliceBlue" Margin="5 0 5 0" FontSize="20"/>
+                    </StackPanel>
+                </WrapPanel>
+                <Rectangle Height="20"/>
+                <Label FontSize="25" HorizontalAlignment="Left" FontFamily="Century Gothic" >Паспортные данные</Label>
+                <WrapPanel>
+                    <StackPanel Width="275">
+                        <Label Grid.ColumnSpan="2" Grid.RowSpan="2" Grid.Column="5" Grid.Row="6" Margin="0 0 0 0" Content="Серия паспорта" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" FontFamily="Yu Gothic UI Light"/>
+                        <xctk:MaskedTextBox Mask="0000" Name="txtPassSer" Grid.ColumnSpan="2" Grid.RowSpan="2" BorderThickness="0" FontFamily="Yu Gothic UI Light" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Transparent" Background="AliceBlue" Grid.Column="5" Grid.Row="8" Margin="5 0 5 0" FontSize="20"/>
+                    </StackPanel>
+                    <StackPanel Width="275">
+                        <Label Grid.ColumnSpan="2" Grid.RowSpan="2" Grid.Column="5" Grid.Row="11" Margin="0 0 0 0" Content="Номер паспорта" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" FontFamily="Yu Gothic UI Light"/>
+                        <xctk:MaskedTextBox Mask="000000" Name="txtPassNum" Grid.ColumnSpan="2" Grid.RowSpan="2" BorderThickness="0" FontFamily="Yu Gothic UI Light" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Transparent" Background="AliceBlue" Grid.Column="5" Grid.Row="13" Margin="5 0 5 0" FontSize="20"/>
+                    </StackPanel>
+                </WrapPanel>
+                <Rectangle Height="20"/>
+                <TextBlock TextWrapping="Wrap" Grid.ColumnSpan="3" Grid.RowSpan="12" Grid.Column="6" Grid.Row="2" Margin="0 0 0 0"   FontSize="10" FontFamily="Century Gothic" Foreground="Black"> Нажимая кнопку сохранить вы подтверждаете согласие на обработку ваших персональных данных.</TextBlock>
+                <Rectangle Height="20"/>
+                <Button Height="30" MinWidth="250" Foreground="White" Name="btnSave" BorderThickness="0"  FontFamily="Syncopate Cyr" Background="#ff6f32" Margin="5 0 0 0" Content="СОХРАНИТЬ" FontSize="20" Click="btnSave_Click"/>
+            </StackPanel>
+            <Rectangle Height="20"/>
+            <Label FontSize="30" HorizontalAlignment="Center"  FontFamily="Syncopate Cyr" Name="lbComplete">ДАННЫЕ СОХРАНЕНЫ!!</Label>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

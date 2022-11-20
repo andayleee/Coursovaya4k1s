@@ -1,0 +1,76 @@
+﻿<Page x:Class="AeroSales.registrationPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+      xmlns:local="clr-namespace:AeroSales"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="registrationPage">
+
+    <Grid Background="#0c73fe">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.1*"/>
+            <ColumnDefinition Width="0.45*"/>
+            <ColumnDefinition Width="0.1*"/>
+            <ColumnDefinition Width="0.45*"/>
+            <ColumnDefinition Width="0.1*"/>
+            <ColumnDefinition Width="0.1*"/>
+            <ColumnDefinition Width="0.45*"/>
+            <ColumnDefinition Width="0.1*"/>
+            <ColumnDefinition Width="0.45*"/>
+            <ColumnDefinition Width="0.1*"/>
+        </Grid.ColumnDefinitions>
+        <Rectangle Fill="White" Grid.Column="5" Grid.ColumnSpan="5" Grid.RowSpan="15"/>
+        <Rectangle Fill="#ff6f32" Grid.Column="0" Grid.ColumnSpan="10" Height="60" VerticalAlignment="Top" Grid.Row="0"/>
+        <Label Grid.ColumnSpan="4" Grid.Column="3" Grid.Row="0" Margin="0 0 0 0" Content="РЕГИСТРАЦИЯ" Height="60" VerticalAlignment="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="30" FontFamily="Syncopate Cyr" Foreground="White"/>
+        <Button Foreground="Black" Name="btnBack" FontFamily="Yu Gothic UI Light" VerticalAlignment="Top" Background="#ff6f32" Grid.Column="0" Grid.ColumnSpan="2"  Grid.Row="0" Content="🠔" FontSize="40" BorderThickness="0" Width="60" Height="60"  HorizontalAlignment="Left" Click="btnBack_Click" />
+        <Label Grid.ColumnSpan="3" Grid.Column="1" Grid.Row="1" Margin="0 0 0 0" Content="ЛОГИН" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="30" FontFamily="Syncopate Cyr" Foreground="White"/>
+        <TextBox Grid.ColumnSpan="3" Name="txtLogin" BorderThickness="0"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Transparent" Background="AliceBlue" Grid.Column="1" Grid.Row="3" Margin="5 0 5 0" FontSize="30"/>
+        <Label Grid.ColumnSpan="3" Foreground="White" Grid.Column="1" FontFamily="Syncopate Cyr" Grid.Row="5" Margin="0 0 0 0" Content="ПАРОЛЬ" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="30"/>
+        <PasswordBox Grid.ColumnSpan="3" Name="txtPassword" BorderThickness="0"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Transparent" Background="AliceBlue" Grid.Column="1" Grid.Row="7" Margin="5 0 5 0" FontSize="30"/>
+        <Label Grid.ColumnSpan="3" Foreground="White" Grid.Column="1" FontFamily="Syncopate Cyr" Grid.Row="9" Margin="0 0 0 0" Content="ПОВТОРИТЕ ПАРОЛЬ" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="30"/>
+        <PasswordBox Grid.ColumnSpan="3" Name="txtPassword2" BorderThickness="0"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Transparent" Background="AliceBlue" Grid.Column="1" Grid.Row="10" Margin="5 0 5 0" FontSize="30" PasswordChanged="txtPassword2_PasswordChanged"/>
+        <Label Grid.ColumnSpan="3" Foreground="White" Grid.Column="1" FontFamily="Syncopate Cyr" Grid.Row="12" Margin="0 0 0 0" Content="EMAIL" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="30"/>
+        <TextBox Grid.ColumnSpan="3" Name="txtEmail" BorderThickness="0"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Transparent" Background="AliceBlue" Grid.Column="1" Grid.Row="13" Margin="5 0 5 0" FontSize="30" />
+
+
+        <Label Name="lbSimilarity" Grid.ColumnSpan="3" Grid.Column="1" Grid.Row="11" Margin="0 0 0 0" HorizontalContentAlignment="Center" FontSize="15" VerticalContentAlignment="Top" FontFamily="Century Gothic" Foreground="White"/>
+
+        <Label Grid.ColumnSpan="3" Grid.Column="6" Grid.Row="1" Margin="0 0 0 0" Content="НОМЕР ТЕЛЕФОНА" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="30" FontFamily="Syncopate Cyr" Foreground="Black"/>
+        <xctk:MaskedTextBox Mask="+7(000)000-00-00" Grid.ColumnSpan="3" Name="txtNumber" BorderThickness="0"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Transparent" Background="AliceBlue" Grid.Column="6" Grid.Row="3" Margin="5 0 5 0" FontSize="30"/>
+
+        <Label Grid.ColumnSpan="3" Grid.Column="6" Grid.Row="5" Margin="0 0 0 0" Content="КОДОВОЕ СЛОВО" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="30" FontFamily="Syncopate Cyr" Foreground="Black"/>
+        <TextBox Grid.ColumnSpan="3" Name="txtCodeWord" BorderThickness="0"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Transparent" Background="AliceBlue" Grid.Column="6" Grid.Row="7" Margin="5 0 5 0" FontSize="30"/>
+
+        <Label Grid.ColumnSpan="3" Grid.Column="6" Grid.Row="8" Margin="0 0 0 0" Content="Кодовое слово может понадобится при восстановления пороля." HorizontalContentAlignment="Center" FontSize="15" VerticalContentAlignment="Top" FontFamily="Century Gothic" Foreground="Black"/>
+
+        <Label Grid.ColumnSpan="3" Grid.Column="6" Grid.Row="11" Margin="0 0 0 0" Content="Регистрируясь, вы даете согласие на обработку персональных данных." HorizontalContentAlignment="Center" FontSize="15" VerticalContentAlignment="Top" FontFamily="Century Gothic" Foreground="Black"/>
+
+        <Button Foreground="White" Name="btnPass" BorderThickness="0" FontFamily="Syncopate Cyr" Background="#ff6f32" Grid.Column="6" Grid.ColumnSpan="3" Grid.Row="10" Margin="5 5 5 5" Content="ЗАРЕГИСТРИРОВАТЬСЯ" FontSize="25" Click="btnPass_Click"/>
+
+        <!--<Button Foreground="White" Name="btnAuthorization" BorderThickness="0" FontFamily="Syncopate Cyr" Background="#ff6f32" Grid.Column="1" Grid.Row="9" Margin="5 5 5 5" Content="ВОЙТИ" FontSize="25" Click="btnAuthorization_Click"/>
+        <Button Foreground="White" Name="btnRegistration" BorderThickness="0" FontFamily="Syncopate Cyr" Background="#ff6f32" Grid.Column="3" Grid.Row="9" Margin="5 5 5 5" Content="РЕГИСТРАЦИЯ" FontSize="25" />
+        <Button Foreground="White" Name="btnPass" BorderThickness="0" FontFamily="Syncopate Cyr" Background="#ff6f32" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="10" Margin="5 5 5 5" Content="ЗАБЫЛИ ПАРОЛЬ?" FontSize="25"/>-->
+
+
+    </Grid>
+</Page>

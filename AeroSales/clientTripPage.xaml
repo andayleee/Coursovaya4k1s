@@ -1,0 +1,142 @@
+﻿<Page x:Class="AeroSales.clientTripPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:AeroSales"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="clientTripPage">
+
+    <ScrollViewer VerticalScrollBarVisibility="Visible">
+        <StackPanel VerticalAlignment="Stretch">
+            <Grid>
+                <Rectangle Fill="#ff6f32" Grid.Column="0" Grid.ColumnSpan="10" Height="60" VerticalAlignment="Top" Grid.Row="0"/>
+                <Label Grid.ColumnSpan="10" Grid.Column="0" Grid.Row="0" Margin="0 0 0 0" Content="AEROSALES" Height="60" VerticalAlignment="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="30" FontFamily="Syncopate Cyr" Foreground="White"/>
+                <Button Foreground="Black" Name="btnBack" FontFamily="Yu Gothic UI Light" VerticalAlignment="Top" Background="#ff6f32" Grid.Column="0" Grid.ColumnSpan="2"  Grid.Row="0" Content="🠔" FontSize="40" BorderThickness="0" Width="60" Height="60"  HorizontalAlignment="Left" Click="btnBack_Click" />
+            </Grid>
+            <Rectangle Height="50"/>
+            <Label FontSize="30" HorizontalAlignment="Center" FontFamily="Century Gothic" >Ваши забронированные билеты</Label>
+            <Rectangle Height="25"/>
+            <Label FontSize="25" HorizontalAlignment="Center" FontFamily="Century Gothic" >Нажмите на билет для открытия подробной информации.</Label>
+            <Rectangle Height="25"/>
+            <DataGrid Name="dg2" AutoGenerateColumns="False" ItemsSource="{Binding charity}" CanUserAddRows="False" CanUserSortColumns="True" VerticalGridLinesBrush="Transparent" HorizontalGridLinesBrush="Transparent" AlternatingRowBackground="AliceBlue" BorderBrush="Transparent" CanUserDeleteRows="False" FontFamily="Century Gothic" HorizontalAlignment="Center" VerticalAlignment="Stretch"  HeadersVisibility="Column" CanUserResizeColumns="False" CanUserReorderColumns="False" ScrollViewer.CanContentScroll="False" FontSize="15" SelectionChanged="dg2_SelectionChanged">
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn Header="Пункт отправления" MinWidth="160">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=point_of_departure}" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Пункт прибытия" MinWidth="160">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=point_of_arrival}" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Дата рейса" MinWidth="120">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=flight_date}" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Время отправления" MinWidth="170">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=time_of_departure}" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Время прибытия" MinWidth="160">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=arrival_time}" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Подтвержден" MinWidth="100">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=booking_status}" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Дата окончания бронирования" MinWidth="220">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=booking_end_date}" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn MinWidth="100">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Name="btnDG" Content="ПОДТВЕРДИТЬ" Click="btnDG_Click" HorizontalAlignment="Center"  MinWidth="100" Height="35" FontFamily="Syncopate Cyr" Background="#ff6f32" FontSize="15" Foreground="White"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn MinWidth="100">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Name="btnDGDelete" Click="btnDGDelete_Click" Content="УДАЛИТЬ" HorizontalAlignment="Center"  MinWidth="100" Height="35" FontFamily="Syncopate Cyr" Background="#ff6f32" FontSize="15" Foreground="White"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Rectangle Height="50"/>
+            <WrapPanel HorizontalAlignment="Center">
+                <GroupBox x:Name="gbTicketInfo" Grid.Row="3" Width="800" Padding="10" Header="РЕЙС" BorderThickness="0.5" FontFamily="Syncopate Cyr" Foreground="Black" BorderBrush="Black" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                    <StackPanel>
+                        <Grid>
+                            <Label FontSize="30" HorizontalAlignment="Left" FontFamily="Century Gothic" Name="lbHeader">Москва - Санкт-Петербург 10.02.2022</Label>
+                            <WrapPanel HorizontalAlignment="Right">
+                                <Label FontSize="25" HorizontalAlignment="Right" FontFamily="Century Gothic">Итого:</Label>
+                                <Label FontSize="25" HorizontalAlignment="Right" FontFamily="Century Gothic" FontWeight="Bold" Name="lbCount">0000</Label>
+                                <Label FontSize="25" HorizontalAlignment="Right" FontFamily="Century Gothic">руб.</Label>
+                            </WrapPanel>
+                        </Grid>
+                        <Rectangle Height="2" Fill="Black"/>
+                        <WrapPanel HorizontalAlignment="Stretch">
+                            <StackPanel HorizontalAlignment="Left">
+                                <Label FontSize="30" HorizontalAlignment="Left" FontFamily="Century Gothic" Name="lbCarrierCompanyName">Аэрофлот</Label>
+                                <Label FontSize="20" HorizontalAlignment="Left" FontFamily="Century Gothic" Name="lbPoints">Москва - Санкт-Петербург</Label>
+                                <Label FontSize="20" HorizontalAlignment="Left" FontFamily="Century Gothic" Name="lbAirType" Foreground="#ff6f32">«Aerobus»</Label>
+                            </StackPanel>
+                            <Rectangle Width="70"/>
+                            <StackPanel HorizontalAlignment="Right">
+                                <Label FontSize="30" HorizontalAlignment="Left" FontFamily="Century Gothic" Name="lbTimeFrom" FontWeight="Bold">12:00:00</Label>
+                                <Label FontSize="20" HorizontalAlignment="Left" FontFamily="Century Gothic" Name="lbPointFrom">Москва</Label>
+                            </StackPanel>
+                            <StackPanel HorizontalAlignment="Right">
+                                <Label FontSize="20" Margin="0,6,0,0" HorizontalAlignment="Center" FontFamily="Century Gothic" Name="lbTripTime">12:00:00</Label>
+                                <Label FontSize="10" HorizontalAlignment="Center" FontFamily="Century Gothic" >Время перелета</Label>
+                            </StackPanel>
+                            <StackPanel HorizontalAlignment="Right">
+                                <Label FontSize="30" HorizontalAlignment="Right" FontFamily="Century Gothic" Name="lbTimeTo" FontWeight="Bold">00:00:00</Label>
+                                <Label FontSize="20" HorizontalAlignment="Right" FontFamily="Century Gothic" Name="lbPointTo">Санкт-Петербург</Label>
+                            </StackPanel>
+                        </WrapPanel>
+                    </StackPanel>
+                </GroupBox>
+                <StackPanel>
+                    <Label FontSize="25" HorizontalAlignment="Center" FontFamily="Century Gothic" >Места:</Label>
+                    <DataGrid Name="dg1" VerticalGridLinesBrush="Transparent" HorizontalGridLinesBrush="Transparent" AlternatingRowBackground="AliceBlue" BorderBrush="Transparent" HeadersVisibility="None" AutoGenerateColumns="False" ItemsSource="{Binding place}" CanUserAddRows="False" CanUserDeleteRows="False" FontFamily="Century Gothic" HorizontalAlignment="Center" VerticalAlignment="Stretch"  ScrollViewer.CanContentScroll="False" FontSize="20">
+                        <DataGrid.Columns>
+                            <DataGridTemplateColumn Header="Место">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Path=place}" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
+            </WrapPanel>
+        </StackPanel>
+    </ScrollViewer>
+</Page>
