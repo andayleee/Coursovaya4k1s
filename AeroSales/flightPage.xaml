@@ -101,7 +101,7 @@
         <DataGrid Name="dg1" Grid.Column="8" Grid.Row="5" Grid.ColumnSpan="11" Grid.RowSpan="30" FontSize="14" IsReadOnly="True" SelectionChanged="dg1_SelectionChanged"  />
 
         <TextBox Name="txtSearch" Grid.ColumnSpan="4" Grid.RowSpan="2" BorderThickness="0" FontFamily="Yu Gothic UI Light" VerticalContentAlignment="Center" BorderBrush="Transparent" Background="AliceBlue" Grid.Column="8" Grid.Row="1" Margin="0 0 0 0" FontSize="20" TextChanged="txtSearch_TextChanged" />
-        <Button Name="btnSearch" FontFamily="Yu Gothic UI Light" Margin="0 0 0 15" Grid.RowSpan="3" Background="#0c73fe" Grid.Column="8" Grid.Row="3" Content="Поиск" FontSize="20" BorderThickness="0"/>
+        <Button Name="btncsv" FontFamily="Yu Gothic UI Light" Margin="0 0 0 15" Grid.RowSpan="3" Background="#0c73fe" Grid.Column="8" Grid.Row="3" Content="CSV" FontSize="20" BorderThickness="0" Click="btncsv_Click"/>
         <Button Name="btnInsert" FontFamily="Yu Gothic UI Light" Margin="0 0 0 15" Grid.RowSpan="3"  Background="#0c73fe" Grid.Column="9" Grid.Row="3" Content="Добавить" FontSize="20" BorderThickness="0" Click="btnInsert_Click"  />
         <Button Name="btnUpdate" FontFamily="Yu Gothic UI Light" Margin="0 0 0 15" Grid.RowSpan="3"  Background="#0c73fe" Grid.Column="10" Grid.Row="3" Content="Изменить" FontSize="20" BorderThickness="0" Click="btnUpdate_Click"  />
         <Button Name="btnDelete" FontFamily="Yu Gothic UI Light" Margin="0 0 0 15" Grid.RowSpan="3"  Background="#0c73fe" Grid.Column="11" Grid.Row="3" Content="Удалить" FontSize="20" BorderThickness="0" Click="btnDelete_Click" />

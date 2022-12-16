@@ -81,7 +81,7 @@
         <TextBox Name="txtLogin" Grid.ColumnSpan="2" Grid.RowSpan="2" BorderThickness="0" FontFamily="Yu Gothic UI Light" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Transparent" Background="AliceBlue" Grid.Column="1" Grid.Row="18" Margin="5 0 5 0" FontSize="20"/>
 
         <Label Grid.ColumnSpan="2" Grid.RowSpan="2" Grid.Column="1" Grid.Row="21" Margin="0 0 0 0" Content="Пароль сотрудника" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" FontFamily="Yu Gothic UI Light"/>
-        <TextBox Name="txtPassword" Grid.ColumnSpan="2" Grid.RowSpan="2" BorderThickness="0" FontFamily="Yu Gothic UI Light" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Transparent" Background="AliceBlue" Grid.Column="1" Grid.Row="23" Margin="5 0 5 0" FontSize="20"/>
+        <PasswordBox Name="txtPassword" Grid.ColumnSpan="2" Grid.RowSpan="2" BorderThickness="0" FontFamily="Yu Gothic UI Light" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Transparent" Background="AliceBlue" Grid.Column="1" Grid.Row="23" Margin="5 0 5 0" FontSize="20"/>
 
         <Label Grid.ColumnSpan="2" Grid.RowSpan="2" Grid.Column="5" Grid.Row="0" Margin="0 0 0 0" Content="Дата рождения сотрудника" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" FontFamily="Yu Gothic UI Light"/>
         <DatePicker Name="txtDateofBirth" Grid.ColumnSpan="2" Grid.RowSpan="2" BorderThickness="0" FontFamily="Yu Gothic UI Light" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Transparent" Background="AliceBlue" Grid.Column="5" Grid.Row="2" Margin="5 0 5 0" FontSize="20"/>

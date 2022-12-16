@@ -40,7 +40,7 @@ namespace AeroSales
             lbEx.Visibility = Visibility.Hidden;
             btnProfile.Visibility = Visibility.Hidden;
             btnTravels.Visibility = Visibility.Hidden;
-            idCl = "5";
+            idCl = idClient;
             Mv = MW;
             if (idCl!="")
             {
@@ -202,10 +202,16 @@ namespace AeroSales
 
         private void btnDG_Click(object sender, RoutedEventArgs e)
         {
-            from = txtFrom.Text;
-            to = txtTo.Text;
-            date = dpTo.Text;
-            Mv.MainFrame.NavigationService.Navigate(new clientOrderPage(Mv, idCl, id[dg2.SelectedIndex].ToString(), from, to, date));
+            if (idCl!="") {
+                from = txtFrom.Text;
+                to = txtTo.Text;
+                date = dpTo.Text;
+                Mv.MainFrame.NavigationService.Navigate(new clientOrderPage(Mv, idCl, id[dg2.SelectedIndex].ToString(), from, to, date));
+            }
+            else
+            {
+                MessageBox.Show("Авторизуйтесь");
+            }
         }
 
         private void btnProfile_Click(object sender, RoutedEventArgs e)

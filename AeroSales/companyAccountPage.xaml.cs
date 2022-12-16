@@ -24,9 +24,11 @@ namespace AeroSales
     {
         string constr = "Host=localhost;Port=5432;Database=AeroSales;Username=postgres;Password=a;";
         MainWindow Mv = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
-        public companyAccountPage(MainWindow MW)
+        int Role;
+        public companyAccountPage(MainWindow MW, int role)
         {
             InitializeComponent();
+            Role = role;
             Mv = MW;
             load();
         }
@@ -146,7 +148,7 @@ namespace AeroSales
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
-            Mv.MainFrame.NavigationService.Navigate(new adminPage(Mv));
+            Mv.MainFrame.NavigationService.Navigate(new adminPage(Mv, Role));
         }
     }
 }

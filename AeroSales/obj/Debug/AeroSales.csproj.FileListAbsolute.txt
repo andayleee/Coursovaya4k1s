@@ -97,3 +97,13 @@ C:\Users\Андрей\source\repos\AeroSales\AeroSales\obj\Debug\clientTripPage.
 C:\Users\Андрей\source\repos\AeroSales\AeroSales\obj\Debug\clientTripPage.baml
 C:\Users\Андрей\source\repos\AeroSales\AeroSales\obj\Debug\clientConfirmTripPage.g.cs
 C:\Users\Андрей\source\repos\AeroSales\AeroSales\obj\Debug\clientConfirmTripPage.baml
+C:\Users\Андрей\source\repos\AeroSales\AeroSales\bin\Debug\LiveCharts.dll
+C:\Users\Андрей\source\repos\AeroSales\AeroSales\bin\Debug\LiveCharts.Wpf.dll
+C:\Users\Андрей\source\repos\AeroSales\AeroSales\bin\Debug\LiveCharts.pdb
+C:\Users\Андрей\source\repos\AeroSales\AeroSales\bin\Debug\LiveCharts.xml
+C:\Users\Андрей\source\repos\AeroSales\AeroSales\bin\Debug\LiveCharts.Wpf.pdb
+C:\Users\Андрей\source\repos\AeroSales\AeroSales\bin\Debug\LiveCharts.Wpf.xml
+C:\Users\Андрей\source\repos\AeroSales\AeroSales\obj\Debug\graphPage.g.cs
+C:\Users\Андрей\source\repos\AeroSales\AeroSales\obj\Debug\graphPage.baml
+C:\Users\Андрей\source\repos\AeroSales\AeroSales\bin\Debug\EPPlus.dll
+C:\Users\Андрей\source\repos\AeroSales\AeroSales\bin\Debug\EPPlus.xml

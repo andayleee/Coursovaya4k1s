@@ -123,7 +123,7 @@
                     </StackPanel>
                 </GroupBox>
                 <StackPanel>
-                    <Label FontSize="25" HorizontalAlignment="Center" FontFamily="Century Gothic" >Места:</Label>
+                    <Label FontSize="25" HorizontalAlignment="Center" FontFamily="Century Gothic" x:Name="lbSeats">Места:</Label>
                     <DataGrid Name="dg1" VerticalGridLinesBrush="Transparent" HorizontalGridLinesBrush="Transparent" AlternatingRowBackground="AliceBlue" BorderBrush="Transparent" HeadersVisibility="None" AutoGenerateColumns="False" ItemsSource="{Binding place}" CanUserAddRows="False" CanUserDeleteRows="False" FontFamily="Century Gothic" HorizontalAlignment="Center" VerticalAlignment="Stretch"  ScrollViewer.CanContentScroll="False" FontSize="20">
                         <DataGrid.Columns>
                             <DataGridTemplateColumn Header="Место">

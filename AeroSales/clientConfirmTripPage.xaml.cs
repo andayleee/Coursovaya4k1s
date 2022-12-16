@@ -28,13 +28,15 @@ namespace AeroSales
         static string constr = "Host=localhost;Port=5432;Database=AeroSales;Username=postgres;Password=a;";
         string idCl = "";
         string idOr = "";
+        string idTi = "";
         NpgsqlConnection connect = new NpgsqlConnection(constr);
-        public clientConfirmTripPage(MainWindow MW, string idClient, string idOrder)
+        public clientConfirmTripPage(MainWindow MW, string idClient, string idOrder, string idTicket)
         {
             InitializeComponent();
             Mv = MW;
             idCl = idClient;
             idOr = idOrder;
+            idTi = idTicket;
             spCode.Visibility = Visibility.Hidden;
             connect.Open();
             NpgsqlCommand command = new NpgsqlCommand($@"select point_of_departure,point_of_arrival,to_char(flight_date, 'dd.mm.yyyy'),aircraft_type,time_of_departure, arrival_time,cost_ticket, id_flight from orderr join ticket on orderr_id=id_orderr join flight on flight_id=id_flight where id_orderr='{idOr}'", connect);
@@ -96,71 +98,37 @@ namespace AeroSales
         {
             Mv.MainFrame.NavigationService.Navigate(new clientTripPage(Mv, idCl));
         }
+        int rand = 0;
 
         private async void btnEmailSend_Click(object sender, RoutedEventArgs e)
         {
             spCode.Visibility = Visibility.Visible;
             btnEmailSend.IsEnabled = false;
-            await SendEmailAsync("вфмм", "Подтверждение оплаты", txtEmail.Text);
-            //// отправитель - устанавливаем адрес и отображаемое в письме имя
-            //MailAddress from = new MailAddress("isip_a.a.aksenov@mpt.ru", "AeroSales");
-            //// кому отправляем
-            //MailAddress to = new MailAddress(txtEmail.Text);
-            //// создаем объект сообщения
-            //MailMessage m = new MailMessage(from, to);
-            //// тема письма
-            //m.Subject = "Подтверждение оплаты";
-            //// текст письма
-            //m.Body = "<h2>Письмо-тест работы smtp-клиента</h2>";
-            //// письмо представляет код html
-            //m.IsBodyHtml = true;
-            //// адрес smtp-сервера и порт, с которого будем отправлять письмо
-            //SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
-            //// логин и пароль
-            //smtp.Credentials = new NetworkCredential("isip_a.a.aksenov@mpt.ru", "lh.gf2003");
-            //smtp.EnableSsl = true;
-            //smtp.Send(m);
-
-
+            Random r = new Random();
+            rand = r.Next(100000, 999999);
+            MailAddress from = new MailAddress("isip_a.a.aksenov@mpt.ru", "Aerosales");
+            MailAddress to = new MailAddress(txtEmail.Text);
+            MailMessage m = new MailMessage(from, to);
+            m.Subject = "Восстановление пароля";
+            m.IsBodyHtml = false;
+            m.Body = Convert.ToString(rand);
+            m.IsBodyHtml = true;
+            SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
+            smtp.Credentials = new NetworkCredential("isip_a.a.aksenov@mpt.ru", "lh.gf2003");
+            smtp.EnableSsl = true;
+            smtp.Send(m);
 
         }
-        private async Task SendEmailAsync(string bodyMail, string subject, string to_address)
+
+        private void btnBuy_Click(object sender, RoutedEventArgs e)
         {
-            string mailsender = "isip_a.a.aksenov@mpt.ru";
-            string pass = "lh.gf2003";
-            string smtpserver = "smtp.gmail.com";
-            int port = 587;
-
-            MailAddress fromAddress = new MailAddress(mailsender, "AeroSales");
-            MailAddress toAddress = new MailAddress(to_address);
-
-            var smtp = new SmtpClient
+            if(rand.ToString() == txtCod.Text)
             {
-                Host = smtpserver,
-                Port = port,
-                EnableSsl = true,
-                DeliveryMethod = SmtpDeliveryMethod.Network,
-                Credentials = new NetworkCredential(fromAddress.Address, pass),
-                Timeout = 20000
-            };
-
-            using (var message = new MailMessage(fromAddress, toAddress)
-            {
-                Subject = subject,
-                Body = bodyMail,
-                IsBodyHtml = bodyMail.ToLower().Contains("html") ? true : false // если в тексте есть "html" отправляем как HTML, в противном случае как текст
-            })
-            {
-                try
-                {
-                    await smtp.SendMailAsync(message);
-                }
-                catch (Exception ex)
-                {
-                    smtp.Dispose();
-
-                    MessageBox.Show(ex.Message, "Ошибка отправки");
-                }
+                connect.Open();
+                NpgsqlCommand command = new NpgsqlCommand($@"UPDATE ticket SET booking_status = 'true' WHERE id_ticket = '{idTi}';", connect);
+                command.ExecuteNonQuery();
+                connect.Close();
+                Mv.MainFrame.NavigationService.Navigate(new clientTripPage(Mv, idCl));
             }
         }
     }

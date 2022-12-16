@@ -33,7 +33,9 @@ namespace AeroSales
         
         private void btnAuthorization_Click(object sender, RoutedEventArgs e)
         {
-            string sql = $@"select count(*) from Employee where Login = '{txtLogin.Text}' and Password = '{txtPassword.Password.ToString()}';";
+            var md5 = MD5.Create();
+            var hash = md5.ComputeHash(Encoding.UTF8.GetBytes(txtPassword.Password.ToString()));
+            string sql = $@"select count(*) from Employee where Login = '{txtLogin.Text}' and Password = '{Convert.ToBase64String(hash)}';";
             NpgsqlConnection conn = new NpgsqlConnection(conn_param);
             NpgsqlCommand comm = new NpgsqlCommand(sql, conn);
             conn.Open();
@@ -45,24 +47,29 @@ namespace AeroSales
                 NpgsqlCommand command = new NpgsqlCommand(sql, conn);
                 if (command.ExecuteScalar().ToString().Contains("Администратор"))
                 {
-                    Mv.MainFrame.NavigationService.Navigate(new adminPage(Mv));
+                    Mv.MainFrame.NavigationService.Navigate(new adminPage(Mv, 1));
                 }
-                else if (command.ExecuteScalar().ToString().Contains("Сотрудник"))
+                else if (command.ExecuteScalar().ToString().Contains("Бухгалтер"))
                 {
-
+                    Mv.MainFrame.NavigationService.Navigate(new adminPage(Mv, 2));
                 }
-                else
+                else if (command.ExecuteScalar().ToString().Contains("Закупщик"))
                 {
-
+                    Mv.MainFrame.NavigationService.Navigate(new adminPage(Mv, 3));
                 }
+                else if (command.ExecuteScalar().ToString().Contains("Кадровик"))
+                {
+                    Mv.MainFrame.NavigationService.Navigate(new adminPage(Mv, 4));
+                }
+
             }
             else
             {
-                sql = $@"select count(*) from client where Login = '{txtLogin.Text}' and Password = '{txtPassword.Password.ToString()}'";
+                sql = $@"select count(*) from client where Login = '{txtLogin.Text}' and Password = '{Convert.ToBase64String(hash)}'";
                 NpgsqlCommand command = new NpgsqlCommand(sql, conn);
                 if (command.ExecuteScalar().ToString() == "1")
                 {
-                    sql = $@"select * from Client where login = '{txtLogin.Text}' and password = '{txtPassword.Password.ToString()}';";
+                    sql = $@"select * from Client where login = '{txtLogin.Text}' and password = '{Convert.ToBase64String(hash)}';";
                     conn = new NpgsqlConnection(conn_param);
                     comm = new NpgsqlCommand(sql, conn);
                     conn.Open();

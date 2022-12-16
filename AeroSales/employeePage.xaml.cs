@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -25,15 +26,17 @@ namespace AeroSales
         string constr = "Host=localhost;Port=5432;Database=AeroSales;Username=postgres;Password=a;";
         List<string> id = new List<string>();
         List<string> names = new List<string>();
+        int Role = 0;
         MainWindow Mv = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
         /// <summary>
         /// Отвечает за инициализацию окна, вызов метода load и загрузка данных в ComboBox
         /// </summary>
         /// <param name="MW">Ссылка на главное окно</param>
-        public employeePage(MainWindow MW)
+        public employeePage(MainWindow MW, int role)
         {
             InitializeComponent();
             Mv = MW;
+            Role = role;
             load();
             NpgsqlConnection connection = new NpgsqlConnection(constr);
             connection.Open();
@@ -71,7 +74,7 @@ namespace AeroSales
         /// <param name="e">экземпляр класса для классов, содержащих данные событий, и предоставляет значение для событий, не содержащих данных</param>
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
-            Mv.MainFrame.NavigationService.Navigate(new adminPage(Mv));
+            Mv.MainFrame.NavigationService.Navigate(new adminPage(Mv, Role));
         }
         /// <summary>
         /// Отвечает за добавление данных из базы данных в элементы окна при нажатии на элемент в dategrid 
@@ -88,7 +91,6 @@ namespace AeroSales
                 txtName.Text = row["Имя"].ToString();
                 txtMiddleName.Text = row["Отчество"].ToString();
                 txtLogin.Text = row["Логин"].ToString();
-                txtPassword.Text = row["Пароль"].ToString();
                 txtSnils.Text = row["СНИЛС"].ToString();
                 txtINN.Text = row["ИНН"].ToString();
                 txtDateofBirth.Text = row["Дата роджения"].ToString();
@@ -123,15 +125,17 @@ namespace AeroSales
         /// <param name="e">экземпляр класса для классов, содержащих данные событий, и предоставляет значение для событий, не содержащих данных</param>
         private void btnInsert_Click(object sender, RoutedEventArgs e)
         {
+            var md5 = MD5.Create();
+            var hash = md5.ComputeHash(Encoding.UTF8.GetBytes(txtPassword.Password.ToString()));
             NpgsqlConnection connection = new NpgsqlConnection(constr);
             try
             {
                 int a = names.IndexOf(cmdPost.Text);
                 string index = id[a];
-                if (txtSurname.Text != "" && txtName.Text != "" && txtLogin.Text != "" && txtPassword.Text != "" && txtDateofBirth.Text != "" && !txtPassSer.Text.Contains("_") && !txtPassNum.Text.Contains("_") && cmdPost.Text != "" && !txtPhoneNum.Text.Contains("_") && !txtPolis.Text.Contains("_") && !txtSnils.Text.Contains("_") && !txtINN.Text.Contains("_"))
+                if (txtSurname.Text != "" && txtName.Text != "" && txtLogin.Text != "" && txtPassword.Password.ToString() != "" && txtDateofBirth.Text != "" && !txtPassSer.Text.Contains("_") && !txtPassNum.Text.Contains("_") && cmdPost.Text != "" && !txtPhoneNum.Text.Contains("_") && !txtPolis.Text.Contains("_") && !txtSnils.Text.Contains("_") && !txtINN.Text.Contains("_"))
                 {
                     connection.Open();
-                    string com = $@"call employee_insert ('{txtPhoneNum.Text}','{txtSurname.Text}','{txtName.Text}','{txtMiddleName.Text}','{txtLogin.Text}','{txtPassword.Text}','{txtDateofBirth.SelectedDate.Value.Date.ToString("yyyy.MM.dd")}','{txtPassSer.Text}','{txtPassNum.Text}','{txtSnils.Text}','{txtPolis.Text}','{txtINN.Text}','{index}')";
+                    string com = $@"call employee_insert ('{txtPhoneNum.Text}','{txtSurname.Text}','{txtName.Text}','{txtMiddleName.Text}','{txtLogin.Text}','{Convert.ToBase64String(hash)}','{txtDateofBirth.SelectedDate.Value.Date.ToString("yyyy.MM.dd")}','{txtPassSer.Text}','{txtPassNum.Text}','{txtSnils.Text}','{txtPolis.Text}','{txtINN.Text}','{index}')";
                     NpgsqlCommand command = new NpgsqlCommand(com, connection);
                     command.ExecuteNonQuery();
                 }
@@ -154,6 +158,8 @@ namespace AeroSales
         /// <param name="e">экземпляр класса для классов, содержащих данные событий, и предоставляет значение для событий, не содержащих данных</param>
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
+            var md5 = MD5.Create();
+            var hash = md5.ComputeHash(Encoding.UTF8.GetBytes(txtPassword.Password.ToString()));
             NpgsqlConnection connection = new NpgsqlConnection(constr);
             DataRowView row = (DataRowView)dg1.SelectedItem;
             try
@@ -162,10 +168,10 @@ namespace AeroSales
                 string index = id[a];
                 if (row != null)
                 {
-                    if (txtSurname.Text != "" && txtName.Text != "" && txtLogin.Text != "" && txtPassword.Text != "" && txtDateofBirth.Text != "" && !txtPassSer.Text.Contains("_") && !txtPassNum.Text.Contains("_") && cmdPost.Text != "" && !txtPhoneNum.Text.Contains("_") && !txtPolis.Text.Contains("_") && !txtSnils.Text.Contains("_") && !txtINN.Text.Contains("_"))
+                    if (txtSurname.Text != "" && txtName.Text != "" && txtLogin.Text != "" && txtPassword.Password.ToString() != "" && txtDateofBirth.Text != "" && !txtPassSer.Text.Contains("_") && !txtPassNum.Text.Contains("_") && cmdPost.Text != "" && !txtPhoneNum.Text.Contains("_") && !txtPolis.Text.Contains("_") && !txtSnils.Text.Contains("_") && !txtINN.Text.Contains("_"))
                     {
                         connection.Open();
-                        string com = $@"call Employee_update ({(int)row["Код сотрудника"]},'{txtPhoneNum.Text}','{txtSurname.Text}','{txtName.Text}','{txtMiddleName.Text}','{txtLogin.Text}','{txtPassword.Text}','{txtDateofBirth.SelectedDate.Value.Date.ToString("yyyy.MM.dd")}','{txtPassSer.Text}','{txtPassNum.Text}','{txtSnils.Text}','{txtPolis.Text}','{txtINN.Text}','{index}')";
+                        string com = $@"call Employee_update ({(int)row["Код сотрудника"]},'{txtPhoneNum.Text}','{txtSurname.Text}','{txtName.Text}','{txtMiddleName.Text}','{txtLogin.Text}','{Convert.ToBase64String(hash)}','{txtDateofBirth.SelectedDate.Value.Date.ToString("yyyy.MM.dd")}','{txtPassSer.Text}','{txtPassNum.Text}','{txtSnils.Text}','{txtPolis.Text}','{txtINN.Text}','{index}')";
                         NpgsqlCommand command = new NpgsqlCommand(com, connection);
                         command.ExecuteNonQuery();
                     }

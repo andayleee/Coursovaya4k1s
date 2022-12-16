@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -53,11 +54,13 @@ namespace AeroSales
             {
                 if (txtLogin.Text != "" && txtPassword.Password.ToString() != "" && txtPassword2.Password.ToString() != "" && !txtNumber.Text.Contains("_") && txtCodeWord.Text != "" && txtEmail.Text != "" && txtEmail.Text.Contains("@") && txtEmail.Text.Contains("."))
                 {
+                    var md5 = MD5.Create();
+                    var hash = md5.ComputeHash(Encoding.UTF8.GetBytes(txtPassword.Password.ToString()));
                     connection.Open();
-                    string com = $@"call client_insert ('{txtNumber.Text}','','','','{txtLogin.Text}','{txtPassword.Password.ToString()}','2000-01-01','','','{txtEmail.Text}','{txtCodeWord.Text}');";
+                    string com = $@"call client_insert ('{txtNumber.Text}','','','','{txtLogin.Text}','{Convert.ToBase64String(hash)}','2000-01-01','','','{txtEmail.Text}','{txtCodeWord.Text}');";
                     NpgsqlCommand command = new NpgsqlCommand(com, connection);
                     command.ExecuteNonQuery();
-                    string sql = $@"select * from Client where login = '{txtLogin.Text}' and password = '{txtPassword.Password.ToString()}';";
+                    string sql = $@"select * from Client where login = '{txtLogin.Text}' and password = '{Convert.ToBase64String(hash)}';";
                     NpgsqlConnection conn = new NpgsqlConnection(constr);
                     NpgsqlCommand comm = new NpgsqlCommand(sql, conn);
                     conn.Open();

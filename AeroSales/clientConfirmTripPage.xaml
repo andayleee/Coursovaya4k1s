@@ -128,10 +128,10 @@
                 <StackPanel x:Name="spCode">
                     <StackPanel Width="250">
                         <Label Grid.ColumnSpan="2" Grid.RowSpan="2" Grid.Column="5" Grid.Row="6" Margin="0 0 0 0" Content="Код подтверждения" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" FontFamily="Yu Gothic UI Light"/>
-                        <xctk:MaskedTextBox Mask="0000000000" Name="txtCod" Grid.ColumnSpan="2" Grid.RowSpan="2" BorderThickness="0" FontFamily="Yu Gothic UI Light" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Transparent" Background="AliceBlue" Grid.Column="5" Grid.Row="8" Margin="5 0 5 0" FontSize="20"/>
+                        <xctk:MaskedTextBox Mask="000000" Name="txtCod" Grid.ColumnSpan="2" Grid.RowSpan="2" BorderThickness="0" FontFamily="Yu Gothic UI Light" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Transparent" Background="AliceBlue" Grid.Column="5" Grid.Row="8" Margin="5 0 5 0" FontSize="20"/>
                     </StackPanel>
                     <Rectangle Height="25"/>
-                    <Button Height="30" MinWidth="250" Foreground="White" Name="btnBuy" BorderThickness="0"  FontFamily="Syncopate Cyr" Background="#ff6f32" Margin="5 0 0 0" Content="ОПЛАТИТЬ" FontSize="20" />
+                    <Button Height="30" MinWidth="250" Foreground="White" Name="btnBuy" BorderThickness="0"  FontFamily="Syncopate Cyr" Background="#ff6f32" Margin="5 0 0 0" Content="ОПЛАТИТЬ" FontSize="20" Click="btnBuy_Click" />
                 </StackPanel>
             </StackPanel>
         </StackPanel>

@@ -25,6 +25,7 @@ namespace AeroSales
         MainWindow Mv = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
         static string constr = "Host=localhost;Port=5432;Database=AeroSales;Username=postgres;Password=a;";
         string idCl = "";
+        string idTicket = "";
         NpgsqlConnection connect = new NpgsqlConnection(constr);
         List<string> id = new List<string>();
         public clientTripPage(MainWindow MW, string idClient)
@@ -33,6 +34,8 @@ namespace AeroSales
             Mv = MW;
             idCl = idClient;
             gbTicketInfo.Visibility = Visibility.Hidden;
+            dg1.Visibility = Visibility.Hidden;
+            lbSeats.Visibility = Visibility.Hidden;
             load();
         }
         private void load()
@@ -68,8 +71,10 @@ namespace AeroSales
             {
 
                 gbTicketInfo.Visibility = Visibility.Visible;
+                dg1.Visibility = Visibility.Visible;
+                lbSeats.Visibility = Visibility.Visible;
                 connect.Open();
-                NpgsqlCommand command = new NpgsqlCommand($@"select point_of_departure,point_of_arrival,to_char(flight_date, 'dd.mm.yyyy'),aircraft_type,time_of_departure, arrival_time,cost_ticket, id_flight from orderr join ticket on orderr_id=id_orderr join flight on flight_id=id_flight where id_orderr='{id[dg2.SelectedIndex].ToString()}'", connect);
+                NpgsqlCommand command = new NpgsqlCommand($@"select point_of_departure,point_of_arrival,to_char(flight_date, 'dd.mm.yyyy'),aircraft_type,time_of_departure, arrival_time,cost_ticket, id_flight, id_ticket from orderr join ticket on orderr_id=id_orderr join flight on flight_id=id_flight where id_orderr='{id[dg2.SelectedIndex].ToString()}'", connect);
                 NpgsqlDataReader dataReader = null;
                 dataReader = command.ExecuteReader();
                 dataReader.Read();
@@ -82,6 +87,7 @@ namespace AeroSales
                 lbTimeTo.Content = dataReader[5].ToString();
                 int count = (int)dataReader[6];
                 string idFl = dataReader[7].ToString();
+                idTicket = dataReader[8].ToString();
                 TimeSpan timeFrom = (TimeSpan)dataReader[4];
                 TimeSpan timeTo = (TimeSpan)dataReader[5];
                 if (timeFrom > timeTo)
@@ -125,7 +131,21 @@ namespace AeroSales
 
         private void btnDG_Click(object sender, RoutedEventArgs e)
         {
-            Mv.MainFrame.NavigationService.Navigate(new clientConfirmTripPage(Mv, idCl, id[dg2.SelectedIndex].ToString()));
+            connect.Open();
+            NpgsqlCommand command = new NpgsqlCommand($@"select booking_status from ticket where id_ticket='{idTicket}'", connect);
+            NpgsqlDataReader dataReader = null;
+            dataReader = command.ExecuteReader();
+            dataReader.Read();
+            string book = dataReader[0].ToString();
+            connect.Close();
+            if (book == "False")
+            {
+                Mv.MainFrame.NavigationService.Navigate(new clientConfirmTripPage(Mv, idCl, id[dg2.SelectedIndex].ToString(), idTicket));
+            }
+            else
+            {
+                MessageBox.Show("Заказ уже подтвержден");
+            }
         }
     }
 }

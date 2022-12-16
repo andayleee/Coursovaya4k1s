@@ -28,10 +28,12 @@ namespace AeroSales
         List<string> names = new List<string>();
         List<string> id1 = new List<string>();
         List<string> names1 = new List<string>();
-        public taxReturnPage(MainWindow MW)
+        int Role = 0;
+        public taxReturnPage(MainWindow MW, int role)
         {
             InitializeComponent();
             Mv = MW;
+            Role = role;
             load();
             NpgsqlConnection connection = new NpgsqlConnection(constr);
             connection.Open();
@@ -189,7 +191,7 @@ namespace AeroSales
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
-            Mv.MainFrame.NavigationService.Navigate(new adminPage(Mv));
+            Mv.MainFrame.NavigationService.Navigate(new adminPage(Mv, Role));
         }
     }
 }

@@ -1,7 +1,9 @@
-﻿using Npgsql;
+﻿using Microsoft.Win32;
+using Npgsql;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,10 +30,13 @@ namespace AeroSales
         List<string> names = new List<string>();
         List<string> id1 = new List<string>();
         List<string> names1 = new List<string>();
-        public flightPage(MainWindow MW)
+        DataTable datatbl = new DataTable();
+        int Role = 0;
+        public flightPage(MainWindow MW, int role)
         {
             InitializeComponent();
             Mv = MW;
+            Role = role;
             load();
             NpgsqlConnection connection = new NpgsqlConnection(constr);
             connection.Open();
@@ -67,7 +72,6 @@ namespace AeroSales
             connection.Open();
             string com = "select * from Flight_View;";
             NpgsqlCommand command = new NpgsqlCommand(com, connection);
-            DataTable datatbl = new DataTable();
             datatbl.Load(command.ExecuteReader());
             dg1.ItemsSource = datatbl.DefaultView;
             connection.Close();
@@ -196,7 +200,64 @@ namespace AeroSales
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
-            Mv.MainFrame.NavigationService.Navigate(new adminPage(Mv));
+            Mv.MainFrame.NavigationService.Navigate(new adminPage(Mv, Role));
+        }
+
+        private void btncsv_Click(object sender, RoutedEventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "CSV Files (.csv)|*.csv";
+            saveFileDialog.InitialDirectory = @"C:\Users\Дмитрий\Desktop";
+
+            if (saveFileDialog.ShowDialog() == true)
+            {
+                ToCSV(datatbl, saveFileDialog.FileName);
+            }
+
+            MessageBox.Show("Выгрузка в CSV прошла успешно");
+        }
+        /// <summary>
+        /// Выгрузка в CSV
+        /// </summary>
+        /// <param name="dtDataTable">Данные из Datagrid</param>
+        /// <param name="strFilePath">Путь до файла</param>
+        public static void ToCSV(DataTable dtDataTable, string strFilePath)
+        {
+            StreamWriter sw = new StreamWriter(strFilePath, false, Encoding.UTF8);
+            for (int i = 0; i < dtDataTable.Columns.Count; i++)
+            {
+                sw.Write(dtDataTable.Columns[i]);
+                if (i < dtDataTable.Columns.Count - 1)
+                {
+                    sw.Write(",");
+                }
+            }
+            sw.Write(sw.NewLine);
+            foreach (DataRow dr in dtDataTable.Rows)
+            {
+                for (int i = 0; i < dtDataTable.Columns.Count; i++)
+                {
+                    if (!Convert.IsDBNull(dr[i]))
+                    {
+                        string value = dr[i].ToString();
+                        if (value.Contains(','))
+                        {
+                            value = String.Format("\"{0}\"", value);
+                            sw.Write(value);
+                        }
+                        else
+                        {
+                            sw.Write(dr[i].ToString());
+                        }
+                    }
+                    if (i < dtDataTable.Columns.Count - 1)
+                    {
+                        sw.Write(",");
+                    }
+                }
+                sw.Write(sw.NewLine);
+            }
+            sw.Close();
         }
     }
 }

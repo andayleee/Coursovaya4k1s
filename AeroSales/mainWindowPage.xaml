@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+      xmlns:System="clr-namespace:System;assembly=mscorlib"
       xmlns:local="clr-namespace:AeroSales"
       mc:Ignorable="d" 
       d:DesignHeight="1080" d:DesignWidth="1920"
@@ -52,7 +53,7 @@
                             </StackPanel>
                             <StackPanel>
                                 <Label Grid.ColumnSpan="3" Grid.Column="1" Grid.Row="1" Margin="0 0 0 0" Content="КОГДА" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="25" FontFamily="Syncopate Cyr" Foreground="White"/>
-                                <DatePicker Name="dpTo" FontFamily="Century Gothic" MinWidth="200" Grid.ColumnSpan="3"  BorderThickness="0"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Transparent" Background="AliceBlue" Grid.Column="1" Grid.Row="7" Margin="5 0 5 0" FontSize="20"/>
+                                <DatePicker   Name="dpTo" FontFamily="Century Gothic" MinWidth="200" Grid.ColumnSpan="3"  BorderThickness="0"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Transparent" Background="AliceBlue" Grid.Column="1" Grid.Row="7" Margin="5 0 5 0" FontSize="20"/>
                             </StackPanel>
                             <StackPanel>
                                 <Label Grid.ColumnSpan="3" Grid.Column="1" Grid.Row="1" Margin="0 0 0 0" Content="" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="25" FontFamily="Syncopate Cyr" Foreground="White"/>
