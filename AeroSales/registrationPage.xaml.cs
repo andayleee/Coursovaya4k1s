@@ -25,16 +25,29 @@ namespace AeroSales
         string constr = "Host=localhost;Port=5432;Database=AeroSales;Username=postgres;Password=a;";
         MainWindow Mv = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
         string idClient = "";
+        /// <summary>
+        /// Инициализация окна
+        /// </summary>
+        /// <param name="MW">Экземпляр класса MainWindow</param>
         public registrationPage(MainWindow MW)
         {
             InitializeComponent();
             Mv = MW;
         }
+        /// <summary>
+        /// Переход на страницу назад
+        /// </summary>
+        /// <param name="sender">Ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">Экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
             Mv.MainFrame.NavigationService.Navigate(new mainWindowPage(Mv, idClient, "", "", ""));
         }
-
+        /// <summary>
+        /// Проверка паролей
+        /// </summary>
+        /// <param name="sender">Ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">Экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void txtPassword2_PasswordChanged(object sender, RoutedEventArgs e)
         {
             if (txtPassword.Password.ToString()==txtPassword2.Password.ToString())
@@ -46,7 +59,11 @@ namespace AeroSales
                 lbSimilarity.Content = "Пароли не совпадают.";
             }
         }
-
+        /// <summary>
+        /// Переход на главную страницу
+        /// </summary>
+        /// <param name="sender">Ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">Экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void btnPass_Click(object sender, RoutedEventArgs e)
         {
             NpgsqlConnection connection = new NpgsqlConnection(constr);

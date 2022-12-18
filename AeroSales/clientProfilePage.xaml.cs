@@ -29,7 +29,11 @@ namespace AeroSales
         string login = "";
         string password = "";
         string codeword = "";
-
+        /// <summary>
+        /// Инициализация окна
+        /// </summary>
+        /// <param name="MW">Экземпляр класса MainWindow</param>
+        /// /// <param name="idClient">Переменная, содержащая обозначение роли пользователя</param>
         public clientProfilePage(MainWindow MW, string idClient)
         {
             InitializeComponent();
@@ -54,12 +58,20 @@ namespace AeroSales
             connect.Close();
             lbComplete.Visibility = Visibility.Hidden;
         }
-
+        /// <summary>
+        /// Переход на страницу назад
+        /// </summary>
+        /// <param name="sender">Ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">Экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
             Mv.MainFrame.NavigationService.Navigate(new mainWindowPage(Mv, idCl, "", "", ""));
         }
-
+        /// <summary>
+        /// Сохранения настроек
+        /// </summary>
+        /// <param name="sender">Ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">Экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
             if(txtSurname.Text!=""&& txtName.Text != "" && txtEmail.Text != "" && !txtPhoneNum.Text.Contains("_") && dpDateBirth.Text != "" && !txtPassNum.Text.Contains("_") && !txtPassSer.Text.Contains("_"))

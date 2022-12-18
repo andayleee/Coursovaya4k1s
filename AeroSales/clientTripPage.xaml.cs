@@ -28,6 +28,11 @@ namespace AeroSales
         string idTicket = "";
         NpgsqlConnection connect = new NpgsqlConnection(constr);
         List<string> id = new List<string>();
+        /// <summary>
+        /// Инициализация окна
+        /// </summary>
+        /// <param name="MW">Экземпляр класса MainWindow</param>
+        /// /// <param name="idClient">Переменная, содержащая обозначение роли пользователя</param>
         public clientTripPage(MainWindow MW, string idClient)
         {
             InitializeComponent();
@@ -38,6 +43,9 @@ namespace AeroSales
             lbSeats.Visibility = Visibility.Hidden;
             load();
         }
+        /// <summary>
+        /// Загрузка данных из базы данных
+        /// </summary>
         private void load()
         {
             NpgsqlConnection connect = new NpgsqlConnection(constr);
@@ -59,12 +67,20 @@ namespace AeroSales
             }
             connect.Close();
         }
-
+        /// <summary>
+        /// Переход на страницу назад
+        /// </summary>
+        /// <param name="sender">Ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">Экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
             Mv.MainFrame.NavigationService.Navigate(new mainWindowPage(Mv, idCl, "", "", ""));
         }
-
+        /// <summary>
+        /// Выбор и вывод данных из базы данных
+        /// </summary>
+        /// <param name="sender">Ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">Экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void dg2_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (dg2.SelectedIndex >= 0)
@@ -116,7 +132,11 @@ namespace AeroSales
                 lbCount.Content = count * Convert.ToInt32(countOfTickets);
             }
         }
-
+        /// <summary>
+        /// Удаление данных
+        /// </summary>
+        /// <param name="sender">Ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">Экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void btnDGDelete_Click(object sender, RoutedEventArgs e)
         {
 
@@ -128,7 +148,11 @@ namespace AeroSales
             gbTicketInfo.Visibility = Visibility.Hidden;
             load();
         }
-
+        /// <summary>
+        /// Подробная информация
+        /// </summary>
+        /// <param name="sender">Ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">Экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void btnDG_Click(object sender, RoutedEventArgs e)
         {
             connect.Open();

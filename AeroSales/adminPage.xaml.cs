@@ -28,6 +28,11 @@ namespace AeroSales
         static string constr = "Host=localhost;Port=5432;Database=AeroSales;Username=postgres;Password=a;";
         NpgsqlConnection connection = new NpgsqlConnection(constr);
         int Role = 0;
+        /// <summary>
+        /// Инициализация окна
+        /// </summary>
+        /// <param name="MW">Экземпляр класса MainWindow</param>
+        /// <param name="role">Переменная, содержащая обозначение роли пользователя</param>
         public adminPage(MainWindow MW, int role)
         {
             InitializeComponent();
@@ -79,62 +84,110 @@ namespace AeroSales
                 btnBackUp.Visibility = Visibility.Visible;
             }
         }
-
+        /// <summary>
+        /// Переход на страницу авторизации
+        /// </summary>
+        /// <param name="sender">Ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">Экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
             Mv.MainFrame.NavigationService.Navigate(new authorization(Mv));
         }
-
+        /// <summary>
+        /// Переход на страницу должностей
+        /// </summary>
+        /// <param name="sender">Ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">Экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void btnPost_Click(object sender, RoutedEventArgs e)
         {
             Mv.MainFrame.NavigationService.Navigate(new postPage(Mv, Role));
         }
-
+        /// <summary>
+        /// Переход на страницу сотрудников
+        /// </summary>
+        /// <param name="sender">Ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">Экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void btnEmployee_Click(object sender, RoutedEventArgs e)
         {
             Mv.MainFrame.NavigationService.Navigate(new employeePage(Mv, Role));
         }
-
+        /// <summary>
+        /// Переход на страницу списков рейса
+        /// </summary>
+        /// <param name="sender">Ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">Экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void btnFlightList_Click(object sender, RoutedEventArgs e)
         {
             Mv.MainFrame.NavigationService.Navigate(new flightListPage(Mv, Role));
         }
-
+        /// <summary>
+        /// Переход на страницу контрактов
+        /// </summary>
+        /// <param name="sender">Ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">Экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void btnContract_Click(object sender, RoutedEventArgs e)
         {
             Mv.MainFrame.NavigationService.Navigate(new contractPage(Mv, Role));
         }
-
+        /// <summary>
+        /// Переход на страницу рейсов
+        /// </summary>
+        /// <param name="sender">Ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">Экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void btnFlight_Click(object sender, RoutedEventArgs e)
         {
             Mv.MainFrame.NavigationService.Navigate(new flightPage(Mv, Role));
         }
-
+        /// <summary>
+        /// Переход на страницу списков билетов
+        /// </summary>
+        /// <param name="sender">Ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">Экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void btnTicketList_Click(object sender, RoutedEventArgs e)
         {
             Mv.MainFrame.NavigationService.Navigate(new ticketListPage(Mv, Role));
         }
-
+        /// <summary>
+        /// Переход на страницу счетов компании
+        /// </summary>
+        /// <param name="sender">Ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">Экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void btnCompanyAccount_Click(object sender, RoutedEventArgs e)
         {
             Mv.MainFrame.NavigationService.Navigate(new companyAccountPage(Mv, Role));
         }
-
+        /// <summary>
+        /// Переход на страницу финансовой отчетности
+        /// </summary>
+        /// <param name="sender">Ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">Экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void btnFinanciatReport_Click(object sender, RoutedEventArgs e)
         {
             Mv.MainFrame.NavigationService.Navigate(new financialReportPage(Mv, Role));
         }
-
+        /// <summary>
+        /// Переход на страницу налоговой отчетности
+        /// </summary>
+        /// <param name="sender">Ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">Экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void btnTaxReturn_Click(object sender, RoutedEventArgs e)
         {
             Mv.MainFrame.NavigationService.Navigate(new taxReturnPage(Mv, Role));
         }
-
+        /// <summary>
+        /// Переход на страницу отображения столбчатой диаграммы
+        /// </summary>
+        /// <param name="sender">Ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">Экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void btnGraf_Click(object sender, RoutedEventArgs e)
         {
             Mv.MainFrame.NavigationService.Navigate(new graphPage(Mv, Role));
         }
-
+        /// <summary>
+        /// Резервное копирование
+        /// </summary>
+        /// <param name="sender">Ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">Экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void btnRezervnoye_Click(object sender, RoutedEventArgs e)
         {
             SaveFileDialog dialog = new SaveFileDialog()
@@ -151,6 +204,10 @@ namespace AeroSales
         string strServer = "localhost";
         string strPort = "5432";
         string strDatabaseName = "AeroSales";
+        /// <summary>
+        /// Резервное копирование
+        /// </summary>
+        /// <param name="pathSave">Путь сохраненной базы данных</param>
         private void Backup(string pathSave)
         {
             try
@@ -176,7 +233,11 @@ namespace AeroSales
             catch
             { }
         }
-
+        /// <summary>
+        /// Бэкап базы данных
+        /// </summary>
+        /// <param name="sender">Ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">Экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void btnBackUp_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog dialog = new OpenFileDialog()
@@ -189,14 +250,20 @@ namespace AeroSales
                 Restore(dialog.FileName);
             }
         }
-
+        /// <summary>
+        /// Бэкап базы данных
+        /// </summary>
+        /// <param name="pathFile">Путь выбранного файла</param>
         public void Restore(string pathFile)
         {
             strDatabaseName = "AeroSalesRestore";
             connection.Open();
             try
             {
-                new NpgsqlCommand("DROP DATABASE \"AeroSalesRestore\";", connection).ExecuteNonQuery();
+                if (new NpgsqlCommand("SELECT 1 as count FROM pg_database WHERE datname='AeroSalesRestore'", connection).ExecuteScalar().ToString() == "1")
+                {
+                    new NpgsqlCommand("DROP DATABASE \"AeroSalesRestore\";", connection).ExecuteNonQuery();
+                }
             }
             catch { }
             NpgsqlCommand command = new NpgsqlCommand("Create DATABASE \"AeroSalesRestore\";", connection);
@@ -235,7 +302,10 @@ namespace AeroSales
                 }
             }
             catch
-            { }
+            {
+                MessageBox.Show("База данных занята другой программой"); 
+                connection.Close();
+            }
         }
     }
 }

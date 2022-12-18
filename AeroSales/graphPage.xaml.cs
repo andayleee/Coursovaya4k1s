@@ -32,6 +32,11 @@ namespace AeroSales
         List<double> list2 = new List<double>();
         List<double> list3 = new List<double>();
         int Role = 0;
+        /// <summary>
+        /// Инициализация окна
+        /// </summary>
+        /// <param name="MW">Экземпляр класса MainWindow</param>
+        /// /// <param name="role">Переменная, содержащая обозначение роли пользователя</param>
         public graphPage(MainWindow MW, int role)
         {
             InitializeComponent();
@@ -87,7 +92,11 @@ namespace AeroSales
         public Func<double, string> Formatter { get; set; }
 
         public NpgsqlConnection connectionString { get; }
-
+        /// <summary>
+        /// Переход на страницу назад
+        /// </summary>
+        /// <param name="sender">Ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">Экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
             Mv.MainFrame.NavigationService.Navigate(new adminPage(Mv, Role));

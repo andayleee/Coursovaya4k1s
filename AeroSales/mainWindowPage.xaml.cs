@@ -30,6 +30,14 @@ namespace AeroSales
         static string constr = "Host=localhost;Port=5432;Database=AeroSales;Username=postgres;Password=a;";
         NpgsqlConnection connect = new NpgsqlConnection(constr);
         List<string> id = new List<string>();
+        /// <summary>
+        /// Инициализация окна
+        /// </summary>
+        /// <param name="MW">Экземпляр класса MainWindow</param>
+        /// <param name="idClient">Переменная, содержащая обозначение клиента</param>
+        /// /// <param name="From">Переменная, содержащая обозначение заказа</param>
+        /// /// <param name="To">Переменная, содержащая обозначение билета</param>
+        /// /// <param name="Date">Переменная, содержащая обозначение билета</param>
         public mainWindowPage(MainWindow MW, string idClient, string From, string To, string Date)
         {
             InitializeComponent();
@@ -106,31 +114,30 @@ namespace AeroSales
                 dpTo.Text = date;
                 Search();
             }
-            //int a = 0;
-            //for (int i = 1; i <= 118; i++)
-            //{
-            //    for (int j = 1; j <= 16; j++)
-            //    {
-            //        a++;
-            //        connect.Open();
-            //        string com = $"INSERT INTO flight_seat VALUES('{a}','{j}','{i}','false',null);";
-            //        command = new NpgsqlCommand(com, connect);
-            //        command.ExecuteNonQuery();
-            //        connect.Close();
-            //    }
-            //}
         }
-
+        /// <summary>
+        /// Переход на страницу авторизации
+        /// </summary>
+        /// <param name="sender">Ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">Экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void btnLogIn_Click(object sender, RoutedEventArgs e)
         {
             Mv.MainFrame.NavigationService.Navigate(new authorization(Mv));
         }
-
+        /// <summary>
+        /// Переход на страницу регистрации
+        /// </summary>
+        /// <param name="sender">Ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">Экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void btnReg_Click(object sender, RoutedEventArgs e)
         {
             Mv.MainFrame.NavigationService.Navigate(new registrationPage(Mv));
         }
-
+        /// <summary>
+        /// Переход на страницу назад
+        /// </summary>
+        /// <param name="sender">Ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">Экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void btnExit_Click(object sender, RoutedEventArgs e)
         {
             idCl = "";
@@ -140,17 +147,27 @@ namespace AeroSales
             btnProfile.Visibility = Visibility.Hidden;
             btnTravels.Visibility = Visibility.Hidden;
         }
-
+        /// <summary>
+        /// Выбор города
+        /// </summary>
+        /// <param name="sender">Ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">Экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void btnCity1_Click(object sender, RoutedEventArgs e)
         {
             txtTo.Text = sender.ToString().Remove(0, 32);
         }
-
+        /// <summary>
+        /// Поиск
+        /// </summary>
+        /// <param name="sender">Ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">Экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void btnSearch_Click(object sender, RoutedEventArgs e)
         {
             Search();
         }
-
+        /// <summary>
+        /// Поиск
+        /// </summary>
         private void Search()
         {
             try
@@ -199,7 +216,11 @@ namespace AeroSales
                 MessageBox.Show(ex.Message);
             }
         }
-
+        /// <summary>
+        /// Переход на страницу заказа клиента
+        /// </summary>
+        /// <param name="sender">Ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">Экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void btnDG_Click(object sender, RoutedEventArgs e)
         {
             if (idCl!="") {
@@ -213,12 +234,20 @@ namespace AeroSales
                 MessageBox.Show("Авторизуйтесь");
             }
         }
-
+        /// <summary>
+        /// Переход на страницу профия
+        /// </summary>
+        /// <param name="sender">Ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">Экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void btnProfile_Click(object sender, RoutedEventArgs e)
         {
             Mv.MainFrame.NavigationService.Navigate(new clientProfilePage(Mv, idCl));
         }
-
+        /// <summary>
+        /// Переход на страницу путешествий
+        /// </summary>
+        /// <param name="sender">Ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">Экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void btnTravels_Click(object sender, RoutedEventArgs e)
         {
             Mv.MainFrame.NavigationService.Navigate(new clientTripPage(Mv, idCl));

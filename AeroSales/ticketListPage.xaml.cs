@@ -25,6 +25,11 @@ namespace AeroSales
         string constr = "Host=localhost;Port=5432;Database=AeroSales;Username=postgres;Password=a;";
         MainWindow Mv = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
         int Role = 0;
+        /// <summary>
+        /// Инициализация окна
+        /// </summary>
+        /// <param name="MW">Экземпляр класса MainWindow</param>
+        /// /// <param name="role">Переменная, содержащая обозначение роли пользователя</param>
         public ticketListPage(MainWindow MW, int role)
         {
             InitializeComponent();
@@ -32,6 +37,9 @@ namespace AeroSales
             Role = role;
             load();
         }
+        /// <summary>
+        /// Загрузка данных
+        /// </summary>
         public void load()
         {
             NpgsqlConnection connection = new NpgsqlConnection(constr);
@@ -43,6 +51,11 @@ namespace AeroSales
             dg1.ItemsSource = datatbl.DefaultView;
             connection.Close();
         }
+        /// <summary>
+        /// Выбор в датагриде
+        /// </summary>
+        /// <param name="sender">Ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">Экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void dg1_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
@@ -53,7 +66,11 @@ namespace AeroSales
             }
             catch { MessageBox.Show("Ошибка"); }
         }
-
+        /// <summary>
+        /// Посиск в базе данных
+        /// </summary>
+        /// <param name="sender">Ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">Экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void txtSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (!txtSearch.Text.Contains('_'))
@@ -72,7 +89,11 @@ namespace AeroSales
                 load();
             }
         }
-
+        /// <summary>
+        /// Добавление данных
+        /// </summary>
+        /// <param name="sender">Ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">Экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void btnInsert_Click(object sender, RoutedEventArgs e)
         {
             NpgsqlConnection connection = new NpgsqlConnection(constr);
@@ -97,7 +118,11 @@ namespace AeroSales
                 load();
             }
         }
-
+        /// <summary>
+        /// Изменение данных
+        /// </summary>
+        /// <param name="sender">Ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">Экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
             NpgsqlConnection connection = new NpgsqlConnection(constr);
@@ -127,7 +152,11 @@ namespace AeroSales
                 load();
             }
         }
-
+        /// <summary>
+        /// Удаление данных
+        /// </summary>
+        /// <param name="sender">Ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">Экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
             NpgsqlConnection connection = new NpgsqlConnection(constr);
@@ -153,7 +182,11 @@ namespace AeroSales
                 load();
             }
         }
-
+        /// <summary>
+        /// Переход на страницу назад
+        /// </summary>
+        /// <param name="sender">Ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">Экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
             Mv.MainFrame.NavigationService.Navigate(new adminPage(Mv, Role));

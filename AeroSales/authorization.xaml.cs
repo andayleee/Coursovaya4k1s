@@ -25,12 +25,20 @@ namespace AeroSales
         string conn_param = "Host=localhost;Port=5432;Database=AeroSales;Username=postgres;Password=a";//"Server=192.168.132.128;Port=5432;User Id=postgres;Password=P50-2-19;Database=testdb;"; //Например: "Server=127.0.0.1;Port=5432;User Id=postgres;Password=mypass;Database=mybase;"
         MainWindow Mv = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
         string idClient = "";
+        /// <summary>
+        /// Инициализация окна
+        /// </summary>
+        /// <param name="MW">Экземпляр класса MainWindow</param>
         public authorization(MainWindow MW)
         {
             InitializeComponent();
             Mv = MW;
         }
-        
+        /// <summary>
+        /// Авторизация
+        /// </summary>
+        /// <param name="sender">Ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">Экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void btnAuthorization_Click(object sender, RoutedEventArgs e)
         {
             var md5 = MD5.Create();
@@ -39,8 +47,6 @@ namespace AeroSales
             NpgsqlConnection conn = new NpgsqlConnection(conn_param);
             NpgsqlCommand comm = new NpgsqlCommand(sql, conn);
             conn.Open();
-            //NpgsqlDataReader rdr = comm.ExecuteReader();
-           
             if (comm.ExecuteScalar().ToString() == "1")
             {
                 sql = $@"select Name_of_Post from Post join Employee on Post_ID = ID_Post where Login = '{txtLogin.Text}'";
@@ -87,16 +93,29 @@ namespace AeroSales
 
             conn.Close();
         }
-
+        /// <summary>
+        /// Переход на страницу регистрации
+        /// </summary>
+        /// <param name="sender">Ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">Экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void btnRegistration_Click(object sender, RoutedEventArgs e)
         {
             Mv.MainFrame.NavigationService.Navigate(new registrationPage(Mv));
         }
-
+        /// <summary>
+        /// Переход на страницу восстановления пароля
+        /// </summary>
+        /// <param name="sender">Ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">Экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void btnPass_Click(object sender, RoutedEventArgs e)
         {
             Mv.MainFrame.NavigationService.Navigate(new restorPasswordPage(Mv));
         }
+        /// <summary>
+        /// Переход на главную страницу
+        /// </summary>
+        /// <param name="sender">Ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">Экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
             Mv.MainFrame.NavigationService.Navigate(new mainWindowPage(Mv, idClient, "", "", ""));

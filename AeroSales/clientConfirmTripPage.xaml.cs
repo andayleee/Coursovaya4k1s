@@ -30,6 +30,13 @@ namespace AeroSales
         string idOr = "";
         string idTi = "";
         NpgsqlConnection connect = new NpgsqlConnection(constr);
+        /// <summary>
+        /// Инициализация окна
+        /// </summary>
+        /// <param name="MW">Экземпляр класса MainWindow</param>
+        /// <param name="idClient">Переменная, содержащая обозначение клиента</param>
+        /// /// <param name="idOrder">Переменная, содержащая обозначение заказа</param>
+        /// /// <param name="idTicket">Переменная, содержащая обозначение билета</param>
         public clientConfirmTripPage(MainWindow MW, string idClient, string idOrder, string idTicket)
         {
             InitializeComponent();
@@ -94,12 +101,21 @@ namespace AeroSales
             txtPassSer.Text = dataReader[8].ToString();
             connect.Close();
         }
+        /// <summary>
+        /// Переход на страницу назад
+        /// </summary>
+        /// <param name="sender">Ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">Экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
             Mv.MainFrame.NavigationService.Navigate(new clientTripPage(Mv, idCl));
         }
         int rand = 0;
-
+        /// <summary>
+        /// Отправка сообщения с кодом подтверждения на почту
+        /// </summary>
+        /// <param name="sender">Ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">Экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private async void btnEmailSend_Click(object sender, RoutedEventArgs e)
         {
             spCode.Visibility = Visibility.Visible;
@@ -119,7 +135,11 @@ namespace AeroSales
             smtp.Send(m);
 
         }
-
+        /// <summary>
+        /// Покупка билета
+        /// </summary>
+        /// <param name="sender">Ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">Экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void btnBuy_Click(object sender, RoutedEventArgs e)
         {
             if(rand.ToString() == txtCod.Text)

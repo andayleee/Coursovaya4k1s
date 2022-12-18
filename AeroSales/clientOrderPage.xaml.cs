@@ -35,7 +35,15 @@ namespace AeroSales
         List<string> choosedid = new List<string>();
         List<string> idTList = new List<string>();
 
-
+        /// <summary>
+        /// Инициализация окна
+        /// </summary>
+        /// <param name="MW">Экземпляр класса MainWindow</param>
+        /// <param name="Date">Переменная, содержащая обозначение даты рейса</param>
+        /// /// <param name="idClient">Переменная, содержащая обозначение роли пользователя</param>
+        /// /// <param name="idFlight">Переменная, содержащая обозначение рейса</param>
+        /// /// <param name="From">Переменная, содержащая обозначение отправления</param>
+        /// /// <param name="To">Переменная, содержащая обозначение прибытия</param>
         public clientOrderPage(MainWindow MW, string idClient, string idFlight, string From, string To, string Date)
         {
             InitializeComponent();
@@ -114,12 +122,20 @@ namespace AeroSales
             }
             connect.Close();
         }
-
+        /// <summary>
+        /// Переход на страницу назад
+        /// </summary>
+        /// <param name="sender">Ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">Экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
             Mv.MainFrame.NavigationService.Navigate(new mainWindowPage(Mv, idCl, from, to, date));
         }
-
+        /// <summary>
+        /// Подтверждение кол-ва
+        /// </summary>
+        /// <param name="sender">Ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">Экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void btnApplyCount_Click(object sender, RoutedEventArgs e)
         {
             if (txtCount.Value > 0)
@@ -128,7 +144,11 @@ namespace AeroSales
                 txtCount.IsReadOnly = true;
             }
         }
-
+        /// <summary>
+        /// Запись мета в базу данных
+        /// </summary>
+        /// <param name="sender">Ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">Экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void chDG_Checked(object sender, RoutedEventArgs e)
         {
             choosedid.Add(id[dg2.SelectedIndex]);
@@ -139,6 +159,11 @@ namespace AeroSales
             connect.Close();
             Order();
         }
+        /// <summary>
+        /// Оформление заказа
+        /// </summary>
+        /// <param name="sender">Ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">Экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void Order()
         {
             if (choosedid.Count == txtCount.Value)
@@ -153,6 +178,11 @@ namespace AeroSales
                 btnApplyOrder.Visibility = Visibility.Hidden;
             }
         }
+        /// <summary>
+        /// Удаление записи места
+        /// </summary>
+        /// <param name="sender">Ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">Экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void chDG_Unchecked(object sender, RoutedEventArgs e)
         {
             choosedid.Remove(id[dg2.SelectedIndex]);
@@ -163,7 +193,11 @@ namespace AeroSales
             connect.Close();
             Order();
         }
-
+        /// <summary>
+        /// Оформление заказа
+        /// </summary>
+        /// <param name="sender">Ссылка на элемент управления/объект, вызвавший событие</param>
+        /// <param name="e">Экземпляр класса для классов, содержащих данные событий, и предоставляет данные событий</param>
         private void btnApplyOrder_Click(object sender, RoutedEventArgs e)
         {
             if (idCl != "")
